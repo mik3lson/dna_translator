@@ -15,6 +15,8 @@ codon_dict= {"UUU":"phe","UUC":"phe","UUA":"leu","UUG":"leu","UCU":"ser","UCC":"
 def index():
     return render_template('index.html')
 
+
+#defining a valid dna sequence
 def valid_dna_sequence(sequence):
     valid_letters = {'A','T','G','C'}
     return set(sequence).issubset(valid_letters)
@@ -24,7 +26,7 @@ def valid_dna_sequence(sequence):
 @app.route('/process', methods=['POST'])
 def process_dna():
     # Get DNA sequence from form input
-    dna_sequence = request.form.get('dna_sequence', '').strip().upper()
+    dna_sequence = request.form.get('dna_sequence', '').strip().upper().replace('/n','').replace(' ','')
     
     #validate the dna_sequence
     if valid_dna_sequence(dna_sequence):
@@ -34,12 +36,7 @@ def process_dna():
         
 
 
-
-    #if not set(dna_sequence).issubset({'A','T','G','C'}):
-    #   return render_template('index.html', result ="Opps. This is an Invalid DNA sequence. The valid neuclotide bases in DNA are 'A','T','G','C")
-    
     # Replace T with U to simulate RNA transcription
-    
     rna_sequence = dna_sequence.replace('T', 'U')
     
     #find the start codon
@@ -63,20 +60,16 @@ def process_dna():
             break
         codons.append(codon)
         
-        # Split RNA into codons (triplets)
-         #codons = [codon_sequence[i:i+3] for i in range(0, len(rna_sequence), 3)]
+       
     
-       # Map codons to their values in the codon dictionary
+    # Map codons to their values in the codon dictionary
     translated_protein = [codon_dict[codon] for codon in codons if codon in codon_dict]
-        #translated_protein = [codon_dict.get(codon, 'Unknown') for codon in codons]
-    
-        # Join the translated protein list into a string
+       
+    # Join the translated protein list into a string
     result = ', '.join(translated_protein)
     
     return render_template('index.html', result=result)
 
-    #except start_codon == -1:
-        #return render_template('index_html',result ="DNA sequence contains no Start codon")
     
 if __name__ == '__main__':
     app.run(debug = True)
