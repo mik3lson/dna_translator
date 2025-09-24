@@ -2,6 +2,8 @@ from flask import Flask, render_template,request,url_for
 
 app= Flask(__name__)
 
+
+#Codon dictionary
 codon_dict= {"UUU":"phe","UUC":"phe","UUA":"leu","UUG":"leu","UCU":"ser","UCC":"ser","UCA":"ser","UCG":"ser",
     "CUU":"leu","CUC":"leu","CUA":"leu","CUG":"leu","AUU":"ile","AUC":"ile","AUA":"ile","AUG":"met",
     "GUU":"val","GUC":"val","GUA":"val","GUG":"val","CCU":"pro","CCC":"pro","CCA":"pro","CCG":"pro",
