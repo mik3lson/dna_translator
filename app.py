@@ -17,10 +17,10 @@ codon_dict= {"UUU":"phe","UUC":"phe","UUA":"leu","UUG":"leu","UCU":"ser","UCC":"
 #protein string dictionary
 prot_string ={"phe":"F","leu":"L","ser":"S","ile":"I","met":"M","val":"V","pro":"P","thr":"T","ala":"A","tyr":"Y",
               "his":"H","gln":"Q","asn":"N","lys":"K","asp":"D","glu":"E","cys":"C","trp":"W","arg":"R","gly":"G"}
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 #defining a valid dna sequence
 def valid_dna_sequence(sequence):
@@ -33,19 +33,16 @@ def valid_dna_sequence(sequence):
 def process_dna():
     # Get DNA sequence from form input
     dna_sequence = request.form.get('dna_sequence', '').strip().upper().replace('\n','').replace('\r','').replace(' ','')
-    
-    #validate the dna_sequence
+
     if valid_dna_sequence(dna_sequence):
         pass
     else:
         return render_template('result.html', result ="Opps. This is an Invalid DNA sequence. The valid neuclotide bases in DNA are 'A','T','G','C")
-        
-
-
-    # Replace T with U to simulate RNA transcription
+    
+    # Convert DNA to RNA by replacing "T" with "U" to simulate RNA transcription
     rna_sequence = dna_sequence.replace('T', 'U')
     
-    #find the start codon
+    #find the start codon "AUG"
     start_codon = rna_sequence.find("AUG")
 
     # create a codon sequence that extracts a sequence starting from AUG
@@ -54,8 +51,6 @@ def process_dna():
     if start_codon == -1:
         return render_template('result.html', result ="Your Dna sequence contains no start codon. Hence it does not code for a particular protein. ")
     
-        
-    #define the stop codons 
     stop_codons = ["UGA","UAA","UAG"]
 
     #Group the codon_sequence into codons (triplets) and stop at the stop codons
@@ -68,14 +63,20 @@ def process_dna():
         
        
     
-    # Map codons to their values in the codon dictionary
+    # Map codons to their aa values in the codon dictionary
     translated_protein = [codon_dict[codon] for codon in codons if codon in codon_dict]
        
-    # Join the translated protein list into a string
     result = ', '.join(translated_protein)
     session['result'] = translated_protein
+
+    #finding the protSting equivalent of the protein sequence
+    protString =""
+    for prot in translated_protein:
+        protString += prot_string[prot]
     
-    return render_template('result.html', result=result, dna_sequence=dna_sequence)
+
+
+    return render_template('result.html', result=result, dna_sequence=dna_sequence, rna_sequence=rna_sequence, protString=protString)
     
 @app.route("/protstring", methods=['GET'])
 def create_protein_string():
@@ -85,8 +86,6 @@ def create_protein_string():
         protString += prot_string[prot]
     print (protString)
     return protString
-
-#create_protein_string(['met','arg','ser','leu','gly','pro','val','ala','ala','ala','ala'])
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0',debug = True)
