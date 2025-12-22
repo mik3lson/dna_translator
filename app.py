@@ -1,7 +1,8 @@
-from flask import Flask, render_template,request,url_for
+from flask import Flask, render_template,request,url_for, session
 
 app= Flask(__name__)
 
+app.secret_key = "supersecretkey"
 
 #Codon dictionary
 codon_dict= {"UUU":"phe","UUC":"phe","UUA":"leu","UUG":"leu","UCU":"ser","UCC":"ser","UCA":"ser","UCG":"ser",
@@ -13,6 +14,9 @@ codon_dict= {"UUU":"phe","UUC":"phe","UUA":"leu","UUG":"leu","UCU":"ser","UCC":"
     "UCG":"trp","CGC":"arg","CGC":"arg","CGA":"arg","CGG":"arg","AGU":"ser","AGC":"ser","AGA":"arg",
     "AGG":"arg","GGU":"gly","GGC":"gly","GGA":"gly","GGG":"gly"}
 
+#protein string dictionary
+prot_string ={"phe":"F","leu":"L","ser":"S","ile":"I","met":"M","val":"V","pro":"P","thr":"T","ala":"A","tyr":"Y",
+              "his":"H","gln":"Q","asn":"N","lys":"K","asp":"D","glu":"E","cys":"C","trp":"W","arg":"R","gly":"G"}
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -28,13 +32,13 @@ def valid_dna_sequence(sequence):
 @app.route('/process', methods=['POST'])
 def process_dna():
     # Get DNA sequence from form input
-    dna_sequence = request.form.get('dna_sequence', '').strip().upper().replace('/n','').replace(' ','')
+    dna_sequence = request.form.get('dna_sequence', '').strip().upper().replace('\n','').replace('\r','').replace(' ','')
     
     #validate the dna_sequence
     if valid_dna_sequence(dna_sequence):
         pass
     else:
-        return render_template('index.html', result ="Opps. This is an Invalid DNA sequence. The valid neuclotide bases in DNA are 'A','T','G','C")
+        return render_template('result.html', result ="Opps. This is an Invalid DNA sequence. The valid neuclotide bases in DNA are 'A','T','G','C")
         
 
 
@@ -48,7 +52,7 @@ def process_dna():
     codon_sequence = rna_sequence[start_codon:] 
     
     if start_codon == -1:
-        return render_template('index.html', result ="Your Dna sequence contains no start codon. Hence it does not code for a particular protein. ")
+        return render_template('result.html', result ="Your Dna sequence contains no start codon. Hence it does not code for a particular protein. ")
     
         
     #define the stop codons 
@@ -69,10 +73,21 @@ def process_dna():
        
     # Join the translated protein list into a string
     result = ', '.join(translated_protein)
+    session['result'] = translated_protein
     
-    return render_template('index.html', result=result)
+    return render_template('result.html', result=result, dna_sequence=dna_sequence)
+    
+@app.route("/protstring", methods=['GET'])
+def create_protein_string():
+    protString =""
+    result = session.get('result','')
+    for prot in result:
+        protString += prot_string[prot]
+    print (protString)
+    return protString
 
-    
+#create_protein_string(['met','arg','ser','leu','gly','pro','val','ala','ala','ala','ala'])
+
 if __name__ == '__main__':
     app.run(host ='0.0.0.0',debug = True)
 
