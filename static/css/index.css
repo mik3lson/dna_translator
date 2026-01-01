@@ -208,8 +208,8 @@ html{
 }
 
 .close-btn:hover {
-    background: #181717;          /* darker gray */
-    box-shadow: 0 0 0 4px #181717; /* thick gray outline */
+    background: #181717;          
+    box-shadow: 0 0 0 4px #181717; 
 }
 
 .submit-btn {
