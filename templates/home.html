@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA to Protein Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img 
+                src="{{ url_for('static', filename='img/side_bar-removebg-preview.png') }}" 
+                alt="Menu"
+                class="side-bar-icon">
+        </div>
+        <a href="#get-started" class="get-started-btn">Get Started</a>
+
+    </div>
+
+
+    <div class="below-header">
+        <div>
+            <p class="hero-title">DNA Translator</p>
+        </div>
+         <div>
+            <img class="dna-image"src="{{ url_for('static', filename='img/dnaaa-removebg-preview.png') }}" alt="DNA Translator Logo">
+        </div>
+    </div>
+    <div id= "get-started"class="container">
+        <div class="text-section">
+            <h1>Convert DNA Into Protein</h1>
+            <p>Enter a DNA sequence and instantly translate it into a protein sequence.</p>
+
+           <button class="button" onclick="openModal()">Enter DNA sequence</button>
+        </div>
+
+        <div class="image-section">
+            <img class="pulse-img" src="{{ url_for('static', filename='img/1GZX_Haemoglobin.png') }}" alt="DNA to Protein">
+        </div>
+    </div>
+
+    <!-- POP-UP FORM -->
+    <div id="modal" class="modal-bg">
+        <div class="modal-box">
+            <h3>Enter DNA Sequence</h3>
+            <form method ="POST" action="/process">
+                <textarea name="dna_sequence" placeholder="ATGCGTAA..." required></textarea>
+                <div class="modal-actions"> </div>
+                    <button class="submit-btn" type="submit">Submit</button>
+                    <button class="close-btn" onclick="closeModal()">Close</button>
+                </div>
+            </form>
+   
+            
+        </div>
+    </div>
+
+    <!-- JS For PopUp -->
+    <script>
+        function openModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+    </script>
+
+    <div id="result" class="result-box"></div>
+
+
+</body>
+</html>

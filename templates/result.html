@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translation Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+    <!-- HEADER-->
+    <div class="header">
+        <div class="header-left">
+            <img 
+               src="{{ url_for('static', filename='img/side_bar-removebg-preview.png') }}"
+                 class="side-bar-icon">
+        </div>
+
+        <a href="/" class="get-started-btn">New Translation</a>
+    </div>
+
+    <div class ="result-container">
+
+        <h1>DNA Translation Result</h1>
+        <div class="result-row">
+            <div class="label">DNA Input:</div>
+            <div class="value-box">
+                {{ dna_sequence[:30] }}{% if dna_sequence|length > 30 %}...{% endif %}
+            </div>
+        </div>
+    
+        <div class="result-viewer">
+
+            <!--DROPDOWN-->
+
+            <div class="selector">
+                <select id="resultSelect" onchange="updateResult()">
+                    <option value ="protein">Protein</option>
+                    <option value="rna">RNA</option>
+                    <option value ="protString">Protein String</option>
+                </select>
+            </div>
+
+            <!--RESULT BOX-->
+            <div class="result-box">
+                <pre id = "resultContent" class="sequence">{{ result }}</pre>
+            </div>
+          
+        </div>
+    </div>
+    <script>
+        const results = {
+        rna: `{{ rna_sequence }}`,
+        protein: `{{ result }}`,
+        protString: `{{ protString }}`
+    };
+
+    function updateResult() {
+        const selected = document.getElementById("resultSelect").value;
+        document.getElementById("resultContent").textContent = results[selected];
+    }
+    </script>
+    
+
+
+
+<a href="/">← Back</a>
+
+</body>
+</html>

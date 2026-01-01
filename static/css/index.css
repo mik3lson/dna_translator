@@ -1,0 +1,248 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    align-items: center;            
+    background: #092c6b;
+    padding: 10px;
+    color: rgb(250, 246, 246);
+    font-family:'poppins', sans-serif;
+    z-index: 2;
+    position: relative;
+    border-bottom: 2px solid whitesmoke;
+    padding: 0 10px;
+    height: 60px;
+
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.side-bar-icon {
+    height: 40px; 
+    width: auto;    
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+}
+
+.side-bar-icon:hover {
+    transform: scale(1.15);
+    opacity: 0.9;
+}
+
+/* Get Started button */
+.get-started-btn {
+    margin-left: auto;
+    color: white;
+    text-decoration: none;
+    padding: 10px 22px;
+    border: 2px solid white;
+    border-radius: 650px;
+    background: transparent;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.get-started-btn:hover {
+    background: white;
+    color: black;
+}
+
+
+.below-header{
+    background-color: #092c6b;
+    display: flex;
+    padding: 20px 0;
+    height: 400px;
+    position: relative;
+}
+
+.hero-title {
+    position: absolute;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 72px;
+    color: whitesmoke;
+    z-index: 2;
+    top: 150px;
+    left: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 48px;
+        top: 80px;
+        left: 16px;
+    }
+}
+
+
+.dna-image {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 400px;   /* adjust this value */
+    width: auto;    /* keeps aspect ratio */
+    right: 20px;
+}
+
+
+/* MAIN CONTENT */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+    gap: 40px;
+}
+
+.text-section {
+    flex: 1;
+}
+
+.text-section h1 {
+    font-size: 32px;
+    font-family: poppins, sans-serif;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    align-self: flex-start
+}
+
+.text-section p {
+    color: #555;
+    margin-bottom: 20px;
+    align-self: center;
+    margin-top: 25px ;
+}
+
+/* IMAGE SECTION */
+.image-section img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 10px;
+    align-self: center;
+}
+
+
+button {
+    background: #9aa0ac;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 650px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #1c4fb7;
+    box-shadow: 0 0 0 4px #1c4fb7; /* thick blue outline */
+}
+
+
+html{
+    scroll-behavior: smooth;
+}
+
+#get-started {
+    scroll-margin-top: 80px; /* adjust to header height */
+}
+
+
+/* POPUP BACKDROP */
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* POPUP BOX */
+.modal-box {
+    background: white;
+    padding: 25px;
+    width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-box textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end; /* or center */
+    margin-top: 10px;
+}
+
+
+.close-btn {
+    background: #555;
+    margin-top: 10px;
+
+}
+
+.close-btn:hover {
+    background: #181717;          /* darker gray */
+    box-shadow: 0 0 0 4px #181717; /* thick gray outline */
+}
+
+.submit-btn {
+    background: #489c5a;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: #3e8e52;        /* darker green */
+    box-shadow: 0 0 0 4px #3e8e52; /* thick green outline */
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    color: white;
+}
+
+
+/* PULSATING IMAGE */
+.pulse-img {
+    animation: pulse 4s infinite ease-in-out;
+}
+
+/* Keyframes for pulsing */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.07);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
