@@ -152,22 +152,6 @@ body {
     color: #092c6b;
     font-size: 1.2rem;
 }
-/*
-
-button {
-    background: #f2f2f5;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 650px;
-    cursor: pointer;
-    margin-right: 10px;
-    font-size: 14px;
-}
-
-button:hover {
-    background: #1c4fb7;
-    box-shadow: 0 0 0 4px #1c4fb7; /* thick blue outline */
 
 .blast {
     display: flex;
@@ -179,4 +163,17 @@ a{
     color: white;
     text-decoration: none;
     font-size: 14px;
+}
+
+.blast-result-box {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border-left: 5px solid #092c6b;
+}
+
+.blast-result-box h2 {
+    margin-top: 0;
+    color: #092c6b;
 }

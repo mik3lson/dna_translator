@@ -44,6 +44,10 @@
                 <pre id = "resultContent" class="sequence">{{ result }}</pre>
             </div>
         </div>
+        <div class="blast-result-box" id="blastResultBox" style="display: none;">
+            <h2>BLAST Results</h2>
+            <div id="blastResultContent"></div>
+        </div>
         
         <div class="blast">
             <button class="get-started-btn" onclick="openModal()">Blast</button>
@@ -79,6 +83,9 @@
 
         await new Promise(resolve => setTimeout(resolve, 50));
 
+        document.getElementById("blastResultBox").style.display = "none";
+        document.getElementById("blastResultContent").innerHTML = "";
+
         try {
             const response = await fetch('/blast');
             const data = await response.json();
@@ -97,19 +104,23 @@
     }
 
     function displayBlastResults(data) {
+        const blastBox = document.getElementById("blastResultBox");
+        const blastContent = document.getElementById("blastResultContent");
+        
         if (data.status === "error") {
-            alert(data.message);
-        } else {
-            const resultBox = document.getElementById("resultContent");
-            const blastHTML = `
-                <strong>🎯 BLAST Results:</strong><br><br>
-                <strong>Title:</strong> ${data.title}<br>
-                <strong>Accession:</strong> ${data.accession}<br>
-                <strong>E-value:</strong> ${data.evalue}
-            `;
-            resultBox.innerHTML = blastHTML;
+            blastBox.style.display = "block";
+            blastContent.innerHTML = `<p style="color:red;">${data.message}</p>`;
+            return;
         }
-    }
+
+        blastContent.innerHTML = `
+            <p><strong>Title:</strong> ${data.title}</p>
+            <p><strong>Accession:</strong> ${data.accession}</p>
+            <p><strong>E-value:</strong> ${data.evalue}</p>
+        `;
+
+    blastBox.style.display = "block";
+}
     </script>
     
 
