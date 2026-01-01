@@ -1,6 +1,9 @@
-from flask import Flask, render_template,request,url_for, session
+from flask import Flask, render_template,request,url_for, session,jsonify
 import os
 from dotenv import load_dotenv
+import time
+import requests
+from Bio.Blast import NCBIWWW, NCBIXML
 
 
 load_dotenv()
@@ -68,15 +71,51 @@ def process_dna():
     translated_protein = [codon_dict[codon] for codon in codons if codon in codon_dict]
        
     result = ', '.join(translated_protein)
-    session['result'] = translated_protein
+    
 
     #finding the protSting equivalent of the protein sequence
     protString =""
     for prot in translated_protein:
         protString += prot_string[prot]
     
-    return render_template('result.html', result=result, dna_sequence=dna_sequence, rna_sequence=rna_sequence, protString=protString)
+    session['result'] = protString
     
+    return render_template('result.html', result=result, dna_sequence=dna_sequence, rna_sequence=rna_sequence, protString=protString)
+
+
+
+
+def blast_sequence(sequence):
+
+    print(" Blasting sequence at NCBI (this may take 1-2 minutes)...")
+    result_handle = NCBIWWW.qblast("blastp", "nr", sequence, hitlist_size=1)
+    blast_record = NCBIXML.read(result_handle)
+    
+    if not blast_record.alignments:
+        print("No matches found.")
+        return {"status": "error", "message": "No matches found."}
+
+    best_hit = blast_record.alignments[0]
+    # Extract the values
+    ncbi_id = best_hit.accession
+    title = best_hit.title[:60]
+    print(f" Found NCBI Match: {title}... (ID: {ncbi_id})")
+    
+    return {
+        "status": "success",
+        "title": title,
+        "accession": ncbi_id,
+        "evalue": float(best_hit.hsps[0].expect) if best_hit.hsps else "N/A"
+    }
+
+@app.route('/blast', methods=['GET'])
+def blast():
+   
+    protString = session.get('result', None)
+    if not protString:
+        return jsonify({"status": "error", "message": "No protein sequence found to BLAST. Please translate a DNA sequence first."})
+    blast_result = blast_sequence(protString)
+    return jsonify(blast_result)
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0',debug = True)

@@ -57,12 +57,48 @@
         const selected = document.getElementById("resultSelect").value;
         document.getElementById("resultContent").textContent = results[selected];
     }
+
+    function openModal() {
+        document.getElementById("modal").classList.add("show");
+        
+        // Call the blast endpoint
+        fetch('/blast')
+            .then(response => response.json())
+            .then(data => {
+                closeModal();
+                displayBlastResults(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                closeModal();
+                alert('Error running BLAST');
+            });
+    }
+
+    function closeModal() {
+        document.getElementById("modal").classList.remove("show");
+    }
+
+    function displayBlastResults(data) {
+        if (data.status === "error") {
+            alert(data.message);
+        } else {
+            const resultBox = document.getElementById("resultContent");
+            const blastHTML = `
+                <strong>🎯 BLAST Results:</strong><br><br>
+                <strong>Title:</strong> ${data.title}<br>
+                <strong>Accession:</strong> ${data.accession}<br>
+                <strong>E-value:</strong> ${data.evalue}
+            `;
+            resultBox.innerHTML = blastHTML;
+        }
+    }
     </script>
     
 
-
-
 <a href="/">← Back</a>
+
+<button onClick="openModal()">Blast</button>
 
 </body>
 </html>
