@@ -30,19 +30,24 @@ During Trancription DNA sequence is converted RNA sequence , subsequently the RN
 ## Requirements
 
 - Python 3.7 or higher  
-- Flask 2.x  
+- Flask 2.x
+- Biopython
 
 ## project structure
 ```
 
 ├── templates/
-|   └── index.html
+|   └── home.html
+|   └── result.html
 ├── static/
+|   └── img/
 │   └── css/
 |          └── index.css
+|          └── result.css
 ├── requirements.txt
 ├── app.py
 └── README.md
+
 ```
 
 
@@ -64,4 +69,4 @@ python m venv .venv
 Install dependencies
 ```bash
 pip install requirements.txt
-```bash
+```
