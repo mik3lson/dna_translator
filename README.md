@@ -66,7 +66,10 @@ python m venv .venv
 .venv/bin/activate #for linux & windows 
 ```
 
+
 Install dependencies
 ```bash
 pip install requirements.txt
 ```
+
+live: [dna-translator](https://dna-2-protein-translator.vercel.app/)
