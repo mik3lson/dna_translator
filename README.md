@@ -8,7 +8,7 @@ It validates the DNA sequence, identifies the start codon, groups the RNA sequen
 This is base on the central dogma of molecular biology i.e the transfer of genetic information from DNA to RNA and finally to proteins. The sequence of DNA is represented by letters A,T,G,C for the neuclotides Adenine, Thymine, Guanine and Cytosine respective. RNA on the otherhand is represented by A,T,G,U indicating Adenine, Thymine, Guanine and **Uracil** respectively. 
 
 
-![central dogma]([https://github.com/mik3lson/dna_translator/blob/main/static/img/central%20dogma.png])
+![central dogma](https://github.com/mik3lson/dna_translator/blob/main/static/img/central%20dogma.png)
 
 During Trancription DNA sequence is converted RNA sequence , subsequently the RNA sequences are converted to Protein (sequence of amino acids) through a process called Translation. Scientists and researchers have long investigated the DNA from an organism's genome to determine the likelihood of the organism to produce a specific protein of interest. Tools like this aid researchers and biologist in achieveing this goal.
 
