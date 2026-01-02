@@ -23,9 +23,13 @@ During Trancription DNA sequence is converted RNA sequence , subsequently the RN
   - Stops translation at the first stop codon (`UGA`, `UAA`, `UAG`).
   - Maps codons to amino acids using a codon dictionary.
 
+- **Protein Identification:**
+  - It identifies the name of the protein the DNA sequence codes for, by conducting NCBI's protein blast via Biopython
+
 - **Error Handling:**  
   - Detects invalid DNA sequences.
   - Alerts if the RNA sequence does not contain a start codon.
+
 
 ## Requirements
 
@@ -66,10 +70,23 @@ python m venv .venv
 .venv/bin/activate #for linux & windows 
 ```
 
-
 Install dependencies
 ```bash
 pip install requirements.txt
 ```
+Run
+```bash
+flask run
+```
 
-live: [dna-translator](https://dna-2-protein-translator.vercel.app/)
+live demo: [dna-translator](https://dna-2-protein-translator.vercel.app/)
+try the dna sequence for insulin.
+```
+ATGGCCCTGTGGATGCGCCTCCTGCCCCTGCTGGCGCTGCTGGCCCTCTGGGGACCTGAC
+CCAGCCGCAGCCTTTGTGAACCAACACCTGTGCGGCTCACACCTGGTGGAAGCTCTCTAC
+CTAGTGTGCGGGGAACGAGGCTTCTTCTACACACCCAAGACCCGCCGGGAGGCAGAGGAC
+CTGCAGGTGGGGCAGGTGGAGCTGGGCGGGGGCCCTGGTGCAGGCAGCCTGCAGCCCTTG
+GCCCTGGAGGGGTCCCTGCAGAAGCGTGGCATTGTGGAACAATGCTGTACCAGCATCTGC
+TCCCTCTACCAGCTGGAGAACTACTGCAAC
+```
+
