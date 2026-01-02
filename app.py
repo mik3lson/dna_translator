@@ -84,6 +84,15 @@ def process_dna():
 
 
 
+def clean_blast_title(raw_title):
+    if "|" in raw_title:
+        parts = raw_title.split("|", 2)
+        if len(parts) == 3:
+            return parts[2].strip()
+
+    return raw_title.strip()
+
+
 
 def blast_sequence(sequence):
 
@@ -98,8 +107,9 @@ def blast_sequence(sequence):
     best_hit = blast_record.alignments[0]
     # Extract the values
     ncbi_id = best_hit.accession
-    title = best_hit.title[:60]
-    print(f" Found NCBI Match: {title}... (ID: {ncbi_id})")
+    raw_title = best_hit.title[:60]
+    title = clean_blast_title(raw_title)
+    print(f" Found NCBI Match: {title}")
     
     return {
         "status": "success",
