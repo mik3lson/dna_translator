@@ -12,6 +12,12 @@
 SwiftPay is a proximity-based web application designed to speed up payment transactions by eliminating the friction of manually entering bank details during payments. It enables users to exchange payment information instantly by bringing two devices close together using NFC technology. 
 
 
+In fast paced environments such as markets, public transport, groceries stores, or peer-to-peer transactions, often manually entering bank details is slow and prone to many errors.
+
+
+SwiftPay solves this with a seamless tap-to-pay experience.
+
+
 ## Principle
 This is base on the central dogma of molecular biology i.e the transfer of genetic information from DNA to RNA and finally to proteins. The sequence of DNA is represented by letters A,T,G,C for the neuclotides Adenine, Thymine, Guanine and Cytosine respective. RNA on the otherhand is represented by A,T,G,U indicating Adenine, Thymine, Guanine and **Uracil** respectively. 
 
