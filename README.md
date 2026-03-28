@@ -33,7 +33,17 @@ SwiftPay solves this with a seamless tap-to-pay experience.
 - Transaction history tracking.
 
 
-## Stack 
+## Stack  
+
+- Frontend:  React + Vite
+
+- Backend: Django Rest Framework
+
+- Payments: Interswitch API
+
+- Communication: Web NFC (Near Field Communication)
+
+  
 This is base on the central dogma of molecular biology i.e the transfer of genetic information from DNA to RNA and finally to proteins. The sequence of DNA is represented by letters A,T,G,C for the neuclotides Adenine, Thymine, Guanine and Cytosine respective. RNA on the otherhand is represented by A,T,G,U indicating Adenine, Thymine, Guanine and **Uracil** respectively. 
 
 
