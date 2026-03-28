@@ -1,4 +1,9 @@
-# DNA to protein sequence Translator
+# SwiftPay
+
+### Proximity-Based Web NFC Payment System   
+
+
+**By team Core Hack**
 
 This Flask-based web application processes DNA sequences and simulates RNA transcription and protein translation. 
 It validates the DNA sequence, identifies the start codon, groups the RNA sequence into codons, and translates it into the corresponding protein sequence based on a codon dictionary. 
