@@ -43,7 +43,14 @@ SwiftPay solves this with a seamless tap-to-pay experience.
 
 - Communication: Web NFC (Near Field Communication)
 
-  
+## Interswitch API Used. 
+
+
+| Endpoint | Method | Purpose |
+| -------- | -------- | -------- |
+| /passport/oauth/token | POST | Obtain an OAuth2 client_credentials access toke |
+| /api/v3/purchases | POST | Charge the sender's card (initiates the transfer) |
+
 This is base on the central dogma of molecular biology i.e the transfer of genetic information from DNA to RNA and finally to proteins. The sequence of DNA is represented by letters A,T,G,C for the neuclotides Adenine, Thymine, Guanine and Cytosine respective. RNA on the otherhand is represented by A,T,G,U indicating Adenine, Thymine, Guanine and **Uracil** respectively. 
 
 
