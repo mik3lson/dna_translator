@@ -18,7 +18,22 @@ In fast paced environments such as markets, public transport, groceries stores, 
 SwiftPay solves this with a seamless tap-to-pay experience.
 
 
-## Principle
+## Features
+
+- NFC-based communication for device-to-device payment initiation.
+
+- QR code fallback for non-NFC enabled devices.
+
+- Instant exchange of payment details.
+
+- Secure authentication with JWT.
+
+- Seamless payment processing via Interswitch.
+
+- Transaction history tracking.
+
+
+## Stack 
 This is base on the central dogma of molecular biology i.e the transfer of genetic information from DNA to RNA and finally to proteins. The sequence of DNA is represented by letters A,T,G,C for the neuclotides Adenine, Thymine, Guanine and Cytosine respective. RNA on the otherhand is represented by A,T,G,U indicating Adenine, Thymine, Guanine and **Uracil** respectively. 
 
 
