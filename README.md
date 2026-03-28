@@ -5,8 +5,11 @@
 
 **By team Core Hack**
 
-This Flask-based web application processes DNA sequences and simulates RNA transcription and protein translation. 
-It validates the DNA sequence, identifies the start codon, groups the RNA sequence into codons, and translates it into the corresponding protein sequence based on a codon dictionary. 
+
+## Overview
+
+
+SwiftPay is a proximity-based web application designed to speed up payment transactions by eliminating the friction of manually entering bank details during payments. It enables users to exchange payment information instantly by bringing two devices close together using NFC technology. 
 
 
 ## Principle
