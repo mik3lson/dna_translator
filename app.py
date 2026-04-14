@@ -96,12 +96,10 @@ def clean_blast_title(raw_title):
 
 def blast_sequence(sequence):
 
-    print(" Blasting sequence at NCBI (this may take 1-2 minutes)...")
     result_handle = NCBIWWW.qblast("blastp", "nr", sequence, hitlist_size=1)
     blast_record = NCBIXML.read(result_handle)
     
     if not blast_record.alignments:
-        print("No matches found.")
         return {"status": "error", "message": "No matches found."}
 
     best_hit = blast_record.alignments[0]
@@ -109,7 +107,6 @@ def blast_sequence(sequence):
     ncbi_id = best_hit.accession
     raw_title = best_hit.title[:60]
     title = clean_blast_title(raw_title)
-    print(f" Found NCBI Match: {title}")
     
     return {
         "status": "success",
